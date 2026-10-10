@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)" />
+    <meta name="author" content="Roel Hingabay" />
+    <meta name="description" content="Roel Hingabay is a Digital Solutions Analyst building practical apps, automations, internal systems, and AI-assisted workflows." />
+
+    <meta property="og:title" content="Roel Hingabay - Digital Solutions Analyst" />
+    <meta property="og:description" content="Practical systems for better work: full-stack products, low-code workflows, and AI-assisted tools." />
+    <meta property="og:type" content="website" />
+    <!-- Once the site has a domain, make this absolute (https://your-domain/og-image.png)
+         and add <meta property="og:url">. Some crawlers will not resolve a relative path. -->
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Roel Hingabay. Practical systems for better work." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0a0a'/%3E%3Ctext x='16' y='22' font-family='Inter,Arial' font-size='17' font-weight='600' fill='%23fafafa' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+    <title>Roel Hingabay - Digital Solutions Analyst</title>
+
+    <script>
+      // Resolve the theme before first paint so dark-mode users never see a white flash.
+      (function () {
+        try {
+          var stored = localStorage.getItem('rh-theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.dataset.theme = stored === 'dark' || stored === 'light' ? stored : prefersDark ? 'dark' : 'light';
+        } catch (e) {
+          document.documentElement.dataset.theme = 'light';
+        }
+      })();
+    </script>
+
+    <!-- Structured data: helps search engines connect this page to the person.
+         Add "url" once the site has a domain. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Roel Hingabay",
+        "jobTitle": "Digital Solutions Analyst",
+        "description": "Digital Solutions Analyst building practical apps, automations, internal systems, and AI-assisted workflows.",
+        "image": "/images/profile.webp",
+        "email": "mailto:roelhingabay24@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Taguig City",
+          "addressCountry": "PH"
+        },
+        "knowsAbout": [
+          "React",
+          "TypeScript",
+          "Power Apps",
+          "Power Automate",
+          "Power BI",
+          "Supabase",
+          "PostgreSQL",
+          "Node.js",
+          "Python",
+          "Docker",
+          "Business process automation"
+        ],
+        "sameAs": [
+          "https://github.com/roel-collab",
+          "https://www.linkedin.com/in/roel-hingabay-879665337/",
+          "https://www.instagram.com/roel_jgram/"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
