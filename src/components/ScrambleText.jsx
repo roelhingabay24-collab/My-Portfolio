@@ -13,7 +13,7 @@ const randomGlyph = (char) => {
 // when the parent (usually a link) is hovered or focused; trigger="view" plays
 // once on first scroll into view. Assistive tech only ever reads the real text,
 // and a hidden sizer keeps the width fixed so the layout never jitters.
-export default function ScrambleText({ text, trigger = 'hover' }) {
+export default function ScrambleText({ text, trigger = 'hover', enabled = false }) {
   const reduceMotion = useReducedMotion();
   const ref = useRef(null);
   const frame = useRef(0);
@@ -39,14 +39,17 @@ export default function ScrambleText({ text, trigger = 'hover' }) {
 
   useEffect(() => {
     const node = ref.current;
-    if (reduceMotion || !node) return undefined;
+    if (!enabled || reduceMotion || !node) return undefined;
 
     if (trigger === 'view') {
-      const observer = new IntersectionObserver(([entry]) => {
-        if (!entry.isIntersecting) return;
-        play();
-        observer.disconnect();
-      }, { threshold: 0.6 });
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) return;
+          play();
+          observer.disconnect();
+        },
+        { threshold: 0.6 },
+      );
       observer.observe(node);
       return () => {
         observer.disconnect();
@@ -62,12 +65,16 @@ export default function ScrambleText({ text, trigger = 'hover' }) {
       host?.removeEventListener('focusin', play);
       cancelAnimationFrame(frame.current);
     };
-  }, [play, reduceMotion, trigger]);
+  }, [enabled, play, reduceMotion, trigger]);
 
   return (
     <span className="scramble" ref={ref}>
-      <span className="scramble-sizer" aria-hidden="true">{text}</span>
-      <span className="scramble-live" aria-hidden="true">{display}</span>
+      <span className="scramble-sizer" aria-hidden="true">
+        {text}
+      </span>
+      <span className="scramble-live" aria-hidden="true">
+        {display}
+      </span>
       <span className="sr-only">{text}</span>
     </span>
   );

@@ -1,0 +1,11 @@
+# Installed dependencies and generated files
+node_modules/
+dist/
+output/
+*.log
+.vercel/
+
+# Local environment settings
+.env
+.env.*
+!.env.example

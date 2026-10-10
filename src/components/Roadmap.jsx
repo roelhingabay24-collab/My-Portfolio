@@ -2,7 +2,6 @@ import { useRef, useState } from 'react';
 import { motion, useMotionValueEvent, useScroll, useSpring } from 'framer-motion';
 import { timeline } from '../data/timeline';
 import { reveal } from '../lib/motion';
-import ScrambleText from './ScrambleText';
 
 export default function Roadmap({ reduceMotion }) {
   const railRef = useRef(null);
@@ -28,10 +27,8 @@ export default function Roadmap({ reduceMotion }) {
     <section className="section shell" id="experience" aria-labelledby="experience-title">
       <motion.div className="section-head" {...reveal(reduceMotion)}>
         <div>
-          <p className="eyebrow"><ScrambleText text="Professional experience" trigger="view" /></p>
-          <h2 id="experience-title">From reporting to full-stack solutions.</h2>
+          <h2 id="experience-title">Professional experience</h2>
         </div>
-        <p className="lede">A progression from operational reporting into application development and automation.</p>
       </motion.div>
 
       <div className="timeline" ref={railRef}>
@@ -53,9 +50,18 @@ export default function Roadmap({ reduceMotion }) {
               {item.company && (
                 <div className="timeline-company">
                   {item.logo ? (
-                    <img className="timeline-logo" src={item.logo} alt="" width="40" height="40" loading="lazy" />
+                    <img
+                      className="timeline-logo"
+                      src={item.logo}
+                      alt=""
+                      width="40"
+                      height="40"
+                      loading="lazy"
+                    />
                   ) : (
-                    <span className="timeline-logo is-initials" aria-hidden="true">{item.initials}</span>
+                    <span className="timeline-logo is-initials" aria-hidden="true">
+                      {item.initials}
+                    </span>
                   )}
                   <span className="timeline-company-name">{item.company}</span>
                 </div>
@@ -63,7 +69,11 @@ export default function Roadmap({ reduceMotion }) {
               <h3>{item.label}</h3>
               <p>{item.text}</p>
               <div className="timeline-tags">
-                {item.tags.map((tag) => <span className="chip" key={tag}>{tag}</span>)}
+                {item.tags.map((tag) => (
+                  <span className="chip" key={tag}>
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
           </motion.article>

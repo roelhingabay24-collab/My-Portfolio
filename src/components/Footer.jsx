@@ -1,4 +1,5 @@
 import { RESUME_URL, SOCIALS } from '../data/site';
+import SocialIcon from './SocialIcon';
 
 export default function Footer({ goTo, onOpenResume }) {
   return (
@@ -12,12 +13,22 @@ export default function Footer({ goTo, onOpenResume }) {
             </a>
           )}
           {SOCIALS.map((social) => (
-            <a key={social.label} href={social.href} target="_blank" rel="noreferrer">
-              {social.label}
+            <a
+              className="social-icon-link"
+              key={social.label}
+              href={social.href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Visit ${social.label} (opens in a new tab)`}
+              title={social.label}
+            >
+              <SocialIcon label={social.label} />
             </a>
           ))}
         </nav>
-        <a href="#home" onClick={(event) => goTo(event, '#home')}>Back to top ↑</a>
+        <a href="#home" onClick={(event) => goTo(event, '#home')}>
+          Back to top ↑
+        </a>
       </div>
     </footer>
   );

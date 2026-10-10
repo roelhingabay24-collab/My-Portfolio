@@ -366,7 +366,7 @@ p { margin: 0; }
 .work-title span { color: var(--faint); font-family: var(--mono); font-size: 12px; }
 .work-body > p { margin-top: 8px; color: var(--muted); font-size: 14px; }
 .work-body > .work-result { display: grid; gap: 4px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--text); font-size: 13px; }
-.work-result span { color: var(--faint); font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+.work-result > span:first-child { color: var(--faint); font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
 .work-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
 .work-tags .chip { font-size: 11px; padding: 3px 9px; }
 .work-more { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; padding: 0; font-size: 13px; font-weight: 500; color: var(--text); }

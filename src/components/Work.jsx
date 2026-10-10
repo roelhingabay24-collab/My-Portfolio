@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { projects } from '../data/projects';
 import { morph, projectMediaId, reveal, trackSpotlight } from '../lib/motion';
-import ScrambleText from './ScrambleText';
 
 // Wipes open from the bottom while settling from a slight zoom.
 const thumbReveal = {
@@ -14,12 +13,8 @@ export default function Work({ onOpenProject, onPrepareProject, reduceMotion }) 
     <section className="section shell" id="projects" aria-labelledby="work-title">
       <motion.div className="section-head" {...reveal(reduceMotion)}>
         <div>
-          <p className="eyebrow"><ScrambleText text="Projects" trigger="view" /></p>
-          <h2 id="work-title">Selected projects and systems.</h2>
+          <h2 id="work-title">Projects</h2>
         </div>
-        <p className="lede">
-          {projects.length} projects spanning internal systems, workflow automation, and product concepts.
-        </p>
       </motion.div>
 
       <div className="work-grid">
@@ -69,22 +64,31 @@ export default function Work({ onOpenProject, onPrepareProject, reduceMotion }) 
                 <span>{project.year}</span>
               </div>
               <p>{project.description}</p>
-              <p className="work-result"><span>Outcome</span>{project.highlight}</p>
-              <div className="work-tags">
-                {project.tags.map((tag) => <span className="chip" key={tag}>{tag}</span>)}
+              <p className="work-result">
+                <span>Outcome</span>
+                <span className="work-result-copy">{project.highlight}</span>
+              </p>
+              <div className="work-footer">
+                <div className="work-tags">
+                  {project.tags.map((tag) => (
+                    <span className="chip" key={tag}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                {/* Covers the whole card so the entire surface is clickable, while staying a real button. */}
+                <button
+                  type="button"
+                  className="work-more"
+                  aria-haspopup="dialog"
+                  aria-label={`View the ${project.title} project`}
+                  onPointerEnter={onPrepareProject}
+                  onFocus={onPrepareProject}
+                  onClick={() => onOpenProject(index)}
+                >
+                  View project <span aria-hidden="true">→</span>
+                </button>
               </div>
-              {/* Covers the whole card so the entire surface is clickable, while staying a real button. */}
-              <button
-                type="button"
-                className="work-more"
-                aria-haspopup="dialog"
-                aria-label={`View the ${project.title} project`}
-                onPointerEnter={onPrepareProject}
-                onFocus={onPrepareProject}
-                onClick={() => onOpenProject(index)}
-              >
-                View project <span aria-hidden="true">→</span>
-              </button>
             </div>
           </motion.article>
         ))}

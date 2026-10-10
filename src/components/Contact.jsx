@@ -46,7 +46,9 @@ function CopyEmail() {
     <button type="button" className="copy-btn" onClick={copy}>
       <span aria-hidden="true">{copied ? '✓' : '⧉'}</span>
       {copied ? 'Copied' : 'Copy'}
-      <span className="sr-only" aria-live="polite">{copied ? 'Email address copied' : ''}</span>
+      <span className="sr-only" aria-live="polite">
+        {copied ? 'Email address copied' : ''}
+      </span>
     </button>
   );
 }
@@ -91,9 +93,11 @@ function ContactForm() {
       });
       const result = await response.json();
       if (!response.ok || !result.success) {
-        throw new Error(response.status === 429
-          ? 'Too many attempts. Please wait a moment and try again.'
-          : result.message || 'The message could not be sent. Please try again.');
+        throw new Error(
+          response.status === 429
+            ? 'Too many attempts. Please wait a moment and try again.'
+            : result.message || 'The message could not be sent. Please try again.',
+        );
       }
       form.reset();
       setState('sent');
@@ -143,7 +147,6 @@ export default function Contact({ reduceMotion }) {
   return (
     <section className="contact shell" id="contact" aria-labelledby="contact-title">
       <motion.div className="contact-intro" {...reveal(reduceMotion)}>
-        <p className="eyebrow"><ScrambleText text="Contact" trigger="view" /></p>
         <motion.h2
           id="contact-title"
           className="contact-title"
@@ -152,33 +155,38 @@ export default function Contact({ reduceMotion }) {
           whileInView={reduceMotion ? undefined : 'visible'}
           viewport={{ once: true, amount: 0.65 }}
         >
-          <motion.span className="contact-title-line" variants={titleLineVariants}>Let&rsquo;s work</motion.span>
-          <motion.span className="contact-title-line" variants={titleLineVariants}><em>together.</em></motion.span>
+          <motion.span className="contact-title-line" variants={titleLineVariants}>
+            Let&rsquo;s work
+          </motion.span>
+          <motion.span className="contact-title-line" variants={titleLineVariants}>
+            <em>together.</em>
+          </motion.span>
         </motion.h2>
         <p className="lede contact-lede">
-          Open to {AVAILABILITY.roles} for {AVAILABILITY.openTo.toLowerCase()} work,
-          {' '}{AVAILABILITY.arrangement.toLowerCase()}.
+          Open to {AVAILABILITY.roles} for {AVAILABILITY.openTo.toLowerCase()} work,{' '}
+          {AVAILABILITY.arrangement.toLowerCase()}.
         </p>
-
       </motion.div>
 
       <motion.div className="contact-details" {...reveal(reduceMotion, 0.08)}>
-        <p className="eyebrow"><ScrambleText text="Direct email" trigger="view" /></p>
+        <p className="eyebrow">
+          <ScrambleText text="Direct email" trigger="view" />
+        </p>
         <div className="contact-email-row">
-          <a
-            className="contact-email"
-            href={`mailto:${CONTACT.email}`}
-            aria-label={`Email ${CONTACT.email}`}
-          >
+          <a className="contact-email" href={`mailto:${CONTACT.email}`} aria-label={`Email ${CONTACT.email}`}>
             {CONTACT.email} <span aria-hidden="true">↗</span>
           </a>
           <CopyEmail />
         </div>
-        <p className="contact-details-note">Have a process to improve, an app to build, or a project to discuss? Send me a message.</p>
+        <p className="contact-details-note">
+          Have a process to improve, an app to build, or a project to discuss? Send me a message.
+        </p>
       </motion.div>
 
       <motion.div className="contact-form-wrap" {...reveal(reduceMotion, 0.14)}>
-        <p className="eyebrow"><ScrambleText text="Send an inquiry" trigger="view" /></p>
+        <p className="eyebrow">
+          <ScrambleText text="Send an inquiry" trigger="view" />
+        </p>
         <ContactForm />
       </motion.div>
     </section>

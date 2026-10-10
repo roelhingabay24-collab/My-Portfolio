@@ -2,6 +2,7 @@ export const navItems = [
   { label: 'About', href: '#about' },
   { label: 'Projects', href: '#projects' },
   { label: 'Experience', href: '#experience' },
+  { label: 'Skills', href: '#skills' },
   { label: 'Certifications', href: '#certifications' },
   { label: 'Gallery', href: '#gallery' },
   { label: 'Contact', href: '#contact' },
@@ -33,7 +34,8 @@ export const CONTACT = {
 export const AVAILABILITY = {
   badge: 'Available for new work',
   openTo: 'Full-time, contract, or freelance',
-  arrangement: 'Remote or hybrid',
+  location: 'Taguig City, Philippines',
+  arrangement: 'Remote or Onsite',
   roles: 'Digital Solutions Analyst, developer, and low-code roles',
 };
 

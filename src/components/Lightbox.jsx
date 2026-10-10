@@ -6,7 +6,21 @@ import { createSwipeNavigation } from '../lib/swipeNavigation';
 // Full-bleed view of a single screenshot. The dialog caps its figure at 44vh so
 // the facts below stay visible, which is too small to actually read a dense admin
 // UI: this is where you go to read it.
-export default function Lightbox({ src, pdf, alt, caption, variant, index, count, onPrev, onNext, onClose, reduceMotion, swipeEnabled = false }) {
+export default function Lightbox({
+  src,
+  pdf,
+  documentUrl,
+  alt,
+  caption,
+  variant,
+  index,
+  count,
+  onPrev,
+  onNext,
+  onClose,
+  reduceMotion,
+  swipeEnabled = false,
+}) {
   const ref = useRef(null);
   const canSwipe = swipeEnabled && count > 1 && !pdf;
   const swipe = useMemo(
@@ -34,14 +48,20 @@ export default function Lightbox({ src, pdf, alt, caption, variant, index, count
       ref={ref}
       tabIndex={-1}
       onKeyDown={onKeyDown}
-      onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
       initial={reduceMotion ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.16 }}
     >
       <div className="lightbox-bar">
-        <p>{caption}{caption && count > 1 ? ' · ' : ''}{count > 1 ? `${index + 1} / ${count}` : ''}</p>
+        <p>
+          {caption}
+          {caption && count > 1 ? ' · ' : ''}
+          {count > 1 ? `${index + 1} / ${count}` : ''}
+        </p>
         <button type="button" className="icon-btn" onClick={onClose} aria-label="Close viewer">
           <span aria-hidden="true">✕</span>
         </button>
@@ -50,7 +70,9 @@ export default function Lightbox({ src, pdf, alt, caption, variant, index, count
       {pdf ? (
         <div className="lightbox-pdf">
           <iframe key={pdf} src={pdf} title={alt} />
-          <a href={pdf} target="_blank" rel="noreferrer">Open certificate PDF in a new tab</a>
+          <a href={pdf} target="_blank" rel="noreferrer">
+            Open certificate PDF in a new tab
+          </a>
         </div>
       ) : (
         <motion.img
@@ -63,6 +85,12 @@ export default function Lightbox({ src, pdf, alt, caption, variant, index, count
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
         />
+      )}
+
+      {documentUrl && (
+        <a className="lightbox-document-link" href={documentUrl} target="_blank" rel="noreferrer">
+          Open certificate PDF in a new tab
+        </a>
       )}
 
       {count > 1 && (
