@@ -1,64 +1,12 @@
-import { AVAILABILITY, CONTACT, RESUME_URL, SOCIALS } from '../data/site';
+﻿import { CONTACT, RESUME_URL, SOCIALS } from '../data/site';
 import SocialIcon from './SocialIcon';
 import DownloadIcon from './DownloadIcon';
+import ProfileCard from './ProfileCard';
 
 export default function ProfileSidebar() {
   return (
     <aside className="profile-sidebar" aria-label="Roel Hingabay profile">
-      <div className="sidebar-identity">
-        <img
-          className="sidebar-avatar"
-          src="/images/profile.webp"
-          alt="Roel Hingabay"
-          width="80"
-          height="80"
-          fetchPriority="high"
-        />
-        <p className="sidebar-name">Roel Hingabay</p>
-        <p className="sidebar-role">Digital Solutions Analyst</p>
-        <p className="sidebar-summary">
-          Turning business needs into clear, reliable digital solutions through practical applications,
-          process automation, and actionable reporting.
-        </p>
-        <ul className="sidebar-facts">
-          <li>
-            <svg
-              className="sidebar-fact-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              aria-hidden="true"
-            >
-              <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-            {AVAILABILITY.location}
-          </li>
-          <li>
-            <span aria-hidden="true">↗</span>
-            {AVAILABILITY.arrangement}
-          </li>
-          <li>
-            <svg
-              className="sidebar-fact-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              aria-hidden="true"
-            >
-              <circle cx="12" cy="12" r="9" />
-              <ellipse cx="12" cy="12" rx="4" ry="9" />
-              <path d="M3 12h18M5 6h14M5 18h14" />
-            </svg>
-            <div className="sidebar-project-counts">
-              <span>4 Projects</span>
-              <span>3 Personal Projects</span>
-            </div>
-          </li>
-        </ul>
-      </div>
+      <ProfileCard className="profile-card-wrap--sidebar" />
       <div className="sidebar-bottom">
         <nav className="sidebar-socials" aria-label="Social profiles">
           {SOCIALS.map((social) => (

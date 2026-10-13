@@ -1,4 +1,5 @@
-import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 import { AnimatePresence, useReducedMotion } from 'framer-motion';
 import PortfolioHeader from './components/PortfolioHeader';
 import ProfileSidebar from './components/ProfileSidebar';
@@ -28,6 +29,7 @@ export default function App() {
   const [openProject, setOpenProject] = useState(null);
   const [resumeOpen, setResumeOpen] = useState(false);
   const reduceMotion = useReducedMotion();
+  const themeTransition = useRef(null);
 
   // 'home' is observed but has no nav entry, so nothing is marked current at the
   // top of the page.
@@ -52,7 +54,45 @@ export default function App() {
     [reduceMotion],
   );
 
-  const toggleTheme = useCallback(() => setTheme((current) => (current === 'light' ? 'dark' : 'light')), []);
+  const toggleTheme = useCallback(
+    async (event) => {
+      // Finish the current reveal before accepting another switch.
+      if (themeTransition.current) return;
+      const updateTheme = () => setTheme((current) => (current === 'light' ? 'dark' : 'light'));
+      if (reduceMotion || !document.startViewTransition) {
+        updateTheme();
+        return;
+      }
+
+      const rect = event.currentTarget.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+      const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+      const root = document.documentElement;
+      root.classList.add('theme-transitioning');
+      const transition = document.startViewTransition(() => flushSync(updateTheme));
+      themeTransition.current = transition;
+      try {
+        await transition.ready;
+        await root.animate(
+          { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+          {
+            duration: 320,
+            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+            pseudoElement: '::view-transition-new(root)',
+          },
+        ).finished;
+      } catch {
+        // A skipped snapshot (for example, a hidden tab) still applies the theme.
+        transition.skipTransition();
+      } finally {
+        await transition.finished;
+        root.classList.remove('theme-transitioning');
+        themeTransition.current = null;
+      }
+    },
+    [reduceMotion],
+  );
 
   const closeProject = useCallback(() => setOpenProject(null), []);
   const closeResume = useCallback(() => setResumeOpen(false), []);

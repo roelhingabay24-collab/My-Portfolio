@@ -2,17 +2,12 @@ import { AVAILABILITY, RESUME_URL, SOCIALS } from '../data/site';
 import { timeline } from '../data/timeline';
 import SocialIcon from './SocialIcon';
 import DownloadIcon from './DownloadIcon';
+import ProfileCard from './ProfileCard';
 
 export default function Overview({ goTo }) {
   return (
     <section className="portfolio-overview shell" id="home" aria-labelledby="overview-title">
-      <div className="overview-mobile-profile">
-        <img src="/images/profile.webp" alt="Roel Hingabay" width="64" height="64" />
-        <div>
-          <p>Roel Hingabay</p>
-          <span>{AVAILABILITY.location}</span>
-        </div>
-      </div>
+      <ProfileCard className="profile-card-wrap--mobile" />
       <svg
         className="overview-illustration"
         viewBox="0 0 180 120"
@@ -29,12 +24,10 @@ export default function Overview({ goTo }) {
       </svg>
       <h1 id="overview-title">Digital Solutions Analyst</h1>
       <p className="overview-description">
-        Building scalable web applications through clean architecture, automated documentation, and modern
-        technologies, while delivering intuitive user experiences that maximize productivity and minimize
-        workflow delays.
+        Building scalable web applications through clean architecture, automated documentation, and modern technologies. These days, I&apos;m focused on generative AI while delivering intuitive user experiences that maximize productivity and minimize workflow delays.
       </p>
       <p className="overview-availability">
-        Open to {AVAILABILITY.openTo.toLowerCase()} · {AVAILABILITY.arrangement}
+        Open to {AVAILABILITY.openTo.toLowerCase()} Â· {AVAILABILITY.arrangement}
       </p>
       <div className="overview-actions">
         <a
