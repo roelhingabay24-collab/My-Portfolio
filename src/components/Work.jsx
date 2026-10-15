@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { projects } from '../data/projects';
 import { morph, projectMediaId, reveal, trackSpotlight } from '../lib/motion';
+import WorkflowPreview from './WorkflowPreview';
 
 // Wipes open from the bottom while settling from a slight zoom.
 const thumbReveal = {
@@ -44,7 +45,9 @@ export default function Work({ onOpenProject, onPrepareProject, reduceMotion }) 
                   scale: { duration: 1, ease: [0.22, 1, 0.36, 1] },
                 }}
               >
-                {project.gallery[0] ? (
+                {project.previewFlow ? (
+                  <WorkflowPreview {...project.previewFlow} />
+                ) : project.gallery[0] ? (
                   <motion.img
                     layout={reduceMotion ? undefined : true}
                     src={project.gallery[0]}

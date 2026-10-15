@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Lightbox from './Lightbox';
+import WorkflowPreview from './WorkflowPreview';
 import { useDismissOnBack, useEscape, useFocusTrap, useScrollLock } from '../lib/hooks';
 import { morph, projectMediaId } from '../lib/motion';
 import { createSwipeNavigation } from '../lib/swipeNavigation';
@@ -117,6 +118,10 @@ export default function ProjectDialog({ project, reduceMotion, onClose }) {
                 </div>
               )}
             </>
+          ) : project.previewFlow ? (
+            <motion.div className="dialog-figure dialog-workflow-figure" layoutId={mediaLayoutId} transition={morph}>
+              <WorkflowPreview {...project.previewFlow} />
+            </motion.div>
           ) : (
             <motion.div className="dialog-figure" layoutId={mediaLayoutId} transition={morph}>
               <span className="work-empty">Preview coming soon</span>

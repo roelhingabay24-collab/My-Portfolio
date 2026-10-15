@@ -40,7 +40,7 @@ export const AVAILABILITY = {
 };
 
 export const SOCIALS = [
-  { label: 'GitHub', href: 'https://github.com/roel-collab' },
+  { label: 'GitHub', href: 'https://github.com/roelhingabay-collab' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/roel-hingabay-879665337/' },
   { label: 'Instagram', href: 'https://www.instagram.com/roel_jgram/' },
 ];

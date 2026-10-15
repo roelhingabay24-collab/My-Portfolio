@@ -1588,23 +1588,23 @@ html {
     grid-template-columns: 1fr;
   }
   .portfolio-content .work-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
   }
   .portfolio-content .work-card .work-body,
   .portfolio-content .work-card.is-featured .work-body {
-    padding: 8px;
+    padding: 16px;
   }
   .portfolio-content .work-card .work-title h3,
   .portfolio-content .work-card.is-featured .work-title h3 {
-    font-size: 13px;
+    font-size: 18px;
     line-height: 1.4;
-    min-height: 2.8em;
+    min-height: 0;
   }
   .portfolio-content .work-card .work-body > p,
   .portfolio-content .work-card.is-featured .work-body > p {
-    font-size: 12px;
-    line-height: 1.55;
+    font-size: 15px;
+    line-height: 1.6;
   }
   .portfolio-content .work-title,
   .portfolio-content .work-card.is-featured .work-title {
@@ -1612,25 +1612,15 @@ html {
     gap: 4px;
   }
   .portfolio-content .work-title span {
-    font-size: 11px;
+    font-size: 12px;
   }
   .portfolio-content .work-thumb,
   .portfolio-content .work-card.is-featured .work-thumb {
-    aspect-ratio: auto;
-    height: clamp(64px, 20vw, 112px);
-  }
-  .portfolio-content .work-body > p:not(.work-result),
-  .portfolio-content .work-result-copy {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    height: auto;
   }
   .portfolio-content .work-body > p:not(.work-result) {
-    -webkit-line-clamp: 3;
     margin-top: 6px;
-  }
-  .portfolio-content .work-result-copy {
-    -webkit-line-clamp: 2;
   }
   .portfolio-content .work-body > .work-result {
     margin-top: 8px;

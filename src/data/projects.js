@@ -60,8 +60,11 @@ export const projects = [
     highlight: 'Trace approvals and find a searchable audit history.',
     role: 'Responsible for designing, developing, testing, and presenting the system to stakeholders.',
     outcome: 'Centralized the memo lifecycle, improved approval visibility and accountability, and provided a searchable audit history.',
-    gallery: [shot(16)],
-    galleryCaptions: ['Internal Memo Registry sign-in screen'],
+    previewFlow: {
+      label: 'Memo workflow overview',
+      steps: ['Draft', 'Route', 'Approve', 'Publish'],
+    },
+    gallery: [],
   },
   {
     number: '05',
@@ -102,5 +105,9 @@ export const projects = [
     role: 'Full-stack developer responsible for frontend and backend development, ALM, testing, deployment, and CI/CD.',
     outcome: 'Improved request visibility, preserved approval records, reduced the risk of missing documents, and strengthened accountability.',
     gallery: [],
+    previewFlow: {
+      label: 'Request workflow overview',
+      steps: ['Request', 'Approval', 'Track', 'Audit'],
+    },
   },
 ];
